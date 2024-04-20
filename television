@@ -1,49 +1,49 @@
 class Television:
 
-    MIN_VOLUME = 0
-    MAX_VOLUME = 100
-    MIN_CHANNEL = 0
-    MAX_CHANNEL = 100
+    MIN_VOLUME: int = 0
+    MAX_VOLUME: int = 100
+    MIN_CHANNEL: int = 0
+    MAX_CHANNEL: int = 100
 
-    def __init__(self):
-        self.status = False
-        self.muted = False
-        self.volume = self.MIN_VOLUME
-        self.channel = self.MIN_CHANNEL
+    def __init__(self) -> None:
+        self.status: bool = False
+        self.muted: bool = False
+        self.volume: int = self.MIN_VOLUME
+        self.channel: int = self.MIN_CHANNEL
 
-    def power(self):
+    def power(self) -> None:
         self.status = not self.status
 
-    def mute(self):
+    def mute(self) -> None:
         self.muted = not self.muted
         if self.muted:
             self.volume = self.MIN_VOLUME
 
-    def channel_up(self):
+    def channel_up(self) -> None:
         if self.status:
             if self.channel < self.MAX_CHANNEL:
                 self.channel += 1
             else:
                 self.channel = self.MIN_CHANNEL
 
-    def channel_down(self):
+    def channel_down(self) -> None:
         if self.status:
             if self.channel > self.MIN_CHANNEL:
                 self.channel -= 1
             else:
                 self.channel = self.MAX_CHANNEL
 
-    def volume_up(self):
+    def volume_up(self) -> None:
         if self.status and not self.muted:
             if self.volume < self.MAX_VOLUME:
                 self.volume += 1
 
-    def volume_down(self):
+    def volume_down(self) -> None:
         if self.status and not self.muted:
             if self.volume > self.MIN_VOLUME:
                 self.volume -= 1
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Power: {'On' if self.status else 'Off'}, Channel: {self.channel}, Volume: {self.volume}"
 
 
